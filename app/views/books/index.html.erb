@@ -1,0 +1,25 @@
+<nav class="nav">
+  <% @genres.each do |genre| %>
+    <div class="link"><%= link_to genre.genre, genre %></div>
+  <% end %>
+  <div class="new_book">
+    <%= link_to 'Add Book to Trade', new_book_path %>
+  </div>
+</nav>
+
+<h1 id="logo" class="center-container">Books for Trade</h1>
+<br>
+<div class="grid">
+  <% @books.each do |book| %>
+    <div class="entry">
+      <h2><%= book.title %></h2>
+      <h3>By: <%= book.author %></h3>
+      <p><%= book.description %></p>
+      <div class="contact"><%= link_to 'Contact Trader', book %></div>
+    </div>
+  <% end %>
+</div>
+
+
+
+
