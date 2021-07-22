@@ -32,6 +32,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # Added gems
 gem 'bixby'
 gem 'bootstrap', '~> 5.0.1'
+gem 'jquery-rails'
 gem 'rspec-rails'
 
 group :development, :test do
