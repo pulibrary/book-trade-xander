@@ -14,3 +14,7 @@ Metrics/PerceivedComplexity:
 Metrics/CyclomaticComplexity:
   Exclude:
     - 'bin/bundle'
+
+RSpec/ExampleLength:
+  Exclude:
+    - 'spec/system/books_spec.rb'

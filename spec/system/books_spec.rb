@@ -11,16 +11,13 @@ RSpec.describe "Book" do
     it "can add new books" do
       visit books_path
       click_on 'Add Book to Trade'
+      Genre.create(genre: "test genre")
       fill_in 'Title', with: 'Test Title'
-      click_button 'Create Todo'
-      expect(page).to have_content('Test Description')
-      expect(page).to have_css('div.container')
-      expect(page).to have_selector('a[href="/todos"]', text: 'Back')
-    end
-    it 'display table with descriptions' do
-      test_todo = Todo.create(description: "test todo")
-      visit todos_path
-      expect(page).to have_content(test_todo.description)
+      click_button 'Create Book'
+      expect(page).to have_content('Test Title')
+      expect(page).to have_content("Genre: test genre")
+      expect(page).to have_css('div.contact_entry')
+      expect(page).to have_selector('a[href="/books"]', text: 'Back')
     end
   end
 end
