@@ -6,11 +6,20 @@ inherit_gem:
 AllCops:
   DisplayCopNames: true
   TargetRubyVersion: 2.6
-
-Metrics/PerceivedComplexity:
   Exclude:
-    - 'bin/bundle'
+    - 'bin/*'
+    - 'vendor/**/*'
+    - 'db/schema.rb'
+    - 'spec/support/**/*'
+    - 'spec/system/**'
+    - 'node_modules/**/*'
+    - 'tmp/**/*'
 
-Metrics/CyclomaticComplexity:
+RSpec/ExampleLength:
   Exclude:
-    - 'bin/bundle'
+    - 'spec/system/books_spec.rb'
+
+Layout/LineLength:
+  Exclude:
+    - 'db/seeds.rb'
+  
