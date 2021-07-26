@@ -34,6 +34,7 @@ gem 'bixby'
 gem 'bootstrap', '~> 5.0.1'
 gem 'jquery-rails'
 gem 'rspec-rails'
+gem 'devise'
 
 group :development, :test do
   gem 'pry-byebug'

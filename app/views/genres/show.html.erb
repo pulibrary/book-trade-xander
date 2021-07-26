@@ -1,5 +1,5 @@
 <nav class="nav">
-  <div class="alt_link"><%= link_to 'All Books', books_path %></div>
+  <div class="alt_link"><%= link_to 'All Books', root_path %></div>
   <% Genre.all.each do |genre| %>
     <div class="link"><%= link_to genre.genre, genre %></div>
   <% end %>
