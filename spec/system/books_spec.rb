@@ -9,10 +9,11 @@ RSpec.describe "Book" do
       expect(page).to have_link "Add Book to Trade"
     end
     it "can add new books" do
+      Genre.create(genre: "test genre")
       visit books_path
       click_on 'Add Book to Trade'
-      Genre.create(genre: "test genre")
       fill_in 'Title', with: 'Test Title'
+      select 'test genre', :from => 'book_genre_id'
       click_button 'Create Book'
       expect(page).to have_content('Test Title')
       expect(page).to have_content("Genre: test genre")

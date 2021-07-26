@@ -1,0 +1,113 @@
+---
+version: 2.1
+executors:
+  book-trade-executor:
+    docker:
+      - image: circleci/ruby:2.6.5-node-browsers
+        environment:
+          BUNDLER_VERSION: 2.2.6
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
+    working_directory: ~/book-trade
+
+commands:
+  setup-bundler:
+    description: "Install correct version of bundler and load from cache or bundle install"
+    steps:
+      - run:
+          name: Configure Bundler
+          command: |
+            echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+            source $BASH_ENV
+            gem install bundler
+
+      # Which version of bundler?
+      - run:
+          name: Which bundler?
+          command: bundle -v
+
+      # Restore bundle cache
+      - restore_cache:
+          keys:
+            - book-trade-bundle-v3-{{ checksum "Gemfile.lock" }}
+            - book-trade-bundle-v3-
+
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+
+      # Store bundle cache
+      - save_cache:
+          key: book-trade-bundle-v3-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+jobs:
+  build:
+    executor: book-trade-executor
+    steps:
+      - attach_workspace:
+          at: '~/book-trade'
+      - checkout
+      - setup-bundler
+
+      # Only necessary if app uses webpacker or yarn in some other way
+      - restore_cache:
+          keys:
+            - book-trade-yarn-v1-{{ checksum "yarn.lock" }}
+            - book-trade-yarn-v1-
+
+      - run:
+          name: Yarn Install
+          command: yarn install --cache-folder ~/.cache/yarn
+
+      # Store yarn / webpacker cache
+      - save_cache:
+          key: book-trade-yarn-v1-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+      - persist_to_workspace:
+          root: '~/book-trade'
+          paths: '*'
+
+  test:
+    executor: book-trade-executor
+    steps:
+      - attach_workspace:
+          at: '~/book-trade'
+      - setup-bundler
+
+      # Run rspec
+      - run:
+          name: Run rspec
+          command: bundle exec rspec spec/
+
+
+      # Save test results for timing analysis
+      - store_test_results:
+          path: test_results
+
+      - persist_to_workspace:
+          root: '~/book-trade'
+          paths: '*'
+
+  rubocop:
+    executor: book-trade-executor
+    steps:
+      - attach_workspace:
+          at: '~/book-trade'
+      - setup-bundler
+      - run: bundle exec rubocop --disable-pending-cops
+
+workflows:
+  build_accept:
+    jobs:
+      - build
+      - rubocop:
+         requires:
+          - build
+      - test:
+         requires:
+          - build

@@ -1,4 +1,16 @@
 # frozen_string_literal: true
+require 'simplecov'
+
+SimpleCov.start "rails" do
+  add_filter 'app/channels/application_cable/'
+
+  # TODO: remove when implementing users
+  add_filter 'app/controllers/genres_controller.rb'
+  # TODO: increase coverage
+  minimum_coverage 65
+end
+
+SimpleCov.formatter = SimpleCov::Formatter::HTMLFormatter
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
