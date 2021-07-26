@@ -1,0 +1,75 @@
+// holds titles/headers of each page
+
+.title-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 15px;
+}
+
+// Book details grid and container
+
+.grid {
+  width: 92vw;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
+
+  column-gap: 3vh;
+  row-gap: 3vh;  
+}
+
+.entry {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(238, 210, 174);
+  border-radius: 10px;
+  border-color: rgb(83, 83, 83);
+  border-width: 3px;
+  border-style: solid;
+  padding: 1vw;
+}
+.entry:hover {
+  border-color: black;
+}
+
+.contact {
+  text-decoration: none;
+  font-style: normal;
+  margin-top: auto;
+}
+
+.contact_entry {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(238, 210, 174);
+  border-radius: 10px;
+  border-color: rgb(83, 83, 83);
+  border-width: 3px;
+  border-style: solid;
+  padding: 1vw;
+  margin: auto;
+}
+
+// Navbar and links
+
+.nav {
+  position: fixed;
+  top: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 95vw;
+  padding: 5px;
+
+  background-color: rgba(211, 211, 211, 0.452);
+}
+
+.new_book {
+  margin-left: auto;
+  margin-right: 6vw;
+}
+
+.link {
+  margin: 1vw;
+}

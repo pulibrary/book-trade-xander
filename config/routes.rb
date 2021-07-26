@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 Rails.application.routes.draw do
+  root to: 'home#index'
+
   devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root to: 'books#index'
+  get '/users', to: 'user#index'
 
-  post '/books', to: 'books#create'
-  get '/books/new', to: 'books#new', as: 'new_book'
+  resources :books
 
-  get '/books/:id', to: 'books#show', as: 'book'
-
+  get '/genres', to: 'genres#index'
   get '/genres/:id', to: 'genres#show', as: 'genre'
 end

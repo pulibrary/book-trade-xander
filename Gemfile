@@ -32,9 +32,9 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # Added gems
 gem 'bixby'
 gem 'bootstrap', '~> 5.0.1'
+gem 'devise'
 gem 'jquery-rails'
 gem 'rspec-rails'
-gem 'devise'
 
 group :development, :test do
   gem 'pry-byebug'
@@ -57,6 +57,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'simplecov', require: false
+  gem "shoulda-matchers", "~> 5.0"
   gem 'webdrivers'
 end
 

@@ -1,0 +1,10 @@
+<%= render 'shared/navbar' %>
+<h1 class="title-container">Search By Genre</h1>
+<hr>
+<div class="genre-container">
+  <% @genres.each do |genre| %>
+    <div class="genre-entry">
+      <%= link_to genre.genre, genre %>
+    </div>
+  <% end %>
+</div>

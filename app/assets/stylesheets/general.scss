@@ -64,70 +64,13 @@ a, a:visited {
   border-style: solid;
   border-color: rgb(90, 62, 25);
   padding: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-right: 5px;
+  margin-left: 5px;
  }
 
 a:hover {
   color: rgb(97, 0, 16);
   background-color: white;
-}
-
-.center-container {
-  display: flex;
-  justify-content: center;
-}
-
-.grid {
-  width: 92vw;
-  display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
-
-  column-gap: 3vh;
-  row-gap: 3vh;  
-}
-
-.entry {
-  display: flex;
-  flex-direction: column;
-  background-color: rgb(238, 210, 174);
-  border-radius: 10px;
-  border-color: rgb(83, 83, 83);
-  border-width: 3px;
-  border-style: solid;
-  padding: 1vw;
-}
-.entry:hover {
-  border-color: black;
-}
-.contact {
-  text-decoration: none;
-  font-style: normal;
-  
-  margin-top: auto;
-}
-
-.nav {
-  position: fixed;
-  top: 0px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 50px;
-
-  color: lightgray;
-}
-
-.new_book {
-  margin-left: auto;
-  margin-right: 6vw;
-}
-
-.link {
-  margin: 1vw;
-}
-
-#logo {
-  padding-top: 30px;
 }
