@@ -2,9 +2,9 @@
 require 'rails_helper'
 
 RSpec.describe Book, type: :model do
-  user_test = User.create(email: "test@gmail.com", name: "Test Name", password: "password", password_confirmation: "password")
-  genre_test = Genre.create(genre: "Fiction")
-  book_test = described_class.create(title: "Test Me", author: "Mr. Test", genre: genre_test, user: user_test)
+  let(:user_test) { User.create(email: "test@gmail.com", name: "Test Name", password: "password", password_confirmation: "password") }
+  let(:genre_test) { Genre.create(genre: "Fiction") }
+  let(:book_test) { described_class.create(title: "Test Me", author: "Mr. Test", genre: genre_test, user: user_test) }
 
   it "is associated to a genre" do
     expect(book_test.genre.genre).to eq(genre_test.genre)

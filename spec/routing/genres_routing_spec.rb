@@ -8,7 +8,7 @@ RSpec.describe GenresController, type: :routing do
     end
 
     it "do not routes to new" do
-      expect(get: "/genres/new").to_not route_to("genres#new")
+      expect(get: "/genres/new").not_to route_to("genres#new")
     end
 
     it "routes to #show" do

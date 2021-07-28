@@ -6,8 +6,7 @@ SimpleCov.start "rails" do
 
   # TODO: remove when implementing users
   add_filter 'app/controllers/genres_controller.rb'
-  # TODO: increase coverage
-  minimum_coverage 65
+  minimum_coverage 100
 end
 
 SimpleCov.formatter = SimpleCov::Formatter::HTMLFormatter

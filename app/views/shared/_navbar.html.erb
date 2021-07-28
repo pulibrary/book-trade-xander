@@ -1,6 +1,9 @@
 <nav class="nav">
   <%= link_to "Home", '/books' %>
   <%= link_to "Search Genres", '/genres' %>
+  <div class="admin-nav">
+    <%= link_to "Manage Genres", '/genres/admin' %>
+  </div>
   <%= link_to 'Add Book to Trade', new_book_path %>
   <%= link_to "My Profile", '/users' %>
 </nav>

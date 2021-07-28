@@ -9,4 +9,7 @@ Rails.application.routes.draw do
 
   get '/genres', to: 'genres#index'
   get '/genres/:id', to: 'genres#show', as: 'genre'
+
+  # admin routes for genres
+  get '/genres/admin', to: 'genres#manage'
 end
