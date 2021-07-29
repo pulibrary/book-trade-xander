@@ -41,7 +41,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     respond_to do |format|
       if @book.update(book_params)
-        format.html { redirect_to @book, notice: "Book was successfully updated." }
+        format.html { redirect_to "/users", notice: "Book was successfully updated." }
         format.json { render :show, status: :ok, location: @book }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,7 +55,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @book.destroy
     respond_to do |format|
-      format.html { redirect_to books_url, notice: "Book was successfully destroyed." }
+      format.html { redirect_to "/books", notice: "Book was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -64,6 +64,6 @@ class BooksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def book_params
-    params.require(:book).permit(:title, :author, :description, :genre_id, :contact_name, :contact_email)
+    params.require(:book).permit(:title, :author, :description, :genre_id).merge(user: current_user)
   end
 end

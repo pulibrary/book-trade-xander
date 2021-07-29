@@ -1,0 +1,24 @@
+<%= render 'shared/navbar' %>
+<h1 class="title-container"> Your Postings</h1>
+<hr>
+<div class="grid">
+  <% Book.where(user_id: current_user.id).find_each do |book| %>
+    <div class="entry">
+      <h2><%= book.title %></h2>
+      <h3>By: <%= book.author %></h3>
+      <p>Genre: <%= book.genre.genre %></p>
+      <p><%= book.description %></p>
+      <div class="horz">
+      <%= link_to "Edit", "books/#{book.id}/edit" %>
+      <%= link_to "Delete", "books/#{book.id}", method: :delete %>
+      </div>
+    </div>
+  <% end %> 
+</div>
+<h1 class="title-container"> Profile Settings </h1>
+<hr>
+<div class="horz">
+  <%= link_to "Edit Profile", edit_user_registration_path %>
+  <%= link_to "Change Password", edit_user_password_path %>
+  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+</div>

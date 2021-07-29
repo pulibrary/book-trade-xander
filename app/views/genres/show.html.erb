@@ -1,12 +1,4 @@
-<nav class="nav">
-  <div class="alt_link"><%= link_to 'All Books', books_path %></div>
-  <% Genre.all.each do |genre| %>
-    <div class="link"><%= link_to genre.genre, genre %></div>
-  <% end %>
-  <div class="new_book">
-    <%= link_to 'Add Book to Trade', new_book_path %>
-  </div>
-</nav>
+<%= render 'shared/navbar' %>
 <h1 id="logo" class="center-container"><%= @genre.genre %> Books</h1>
 <br>
 <div class="grid">

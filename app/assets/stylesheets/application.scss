@@ -13,7 +13,8 @@
  */
 @import "bootstrap";
 
-@import "scaffolds";
-@import "books";
-@import "genres";
+@import "general";
+@import "containers";
 
+@import "genres";
+@import "user";

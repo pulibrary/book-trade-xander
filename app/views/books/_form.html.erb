@@ -30,18 +30,7 @@
     <%= form.label :genre %>
     <%= form.collection_select(:genre_id, Genre.all, :id, :genre) %>
   </div>
-
-  <div class="field">
-    <%= form.label :contact_name %>
-    <%= form.text_field :contact_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :contact_email %>
-    <%= form.text_field :contact_email %>
-  </div>
   
-
   <div class="actions">
     <%= form.submit %>
   </div>

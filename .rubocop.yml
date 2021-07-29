@@ -16,8 +16,12 @@ AllCops:
     - 'tmp/**/*'
 
 RSpec/ExampleLength:
+  Enabled: false
+
+Metrics/BlockLength:
   Exclude:
-    - 'spec/system/books_spec.rb'
+    - 'spec/**/*'
+    - 'config/environments/*'
 
 Layout/LineLength:
   Exclude:

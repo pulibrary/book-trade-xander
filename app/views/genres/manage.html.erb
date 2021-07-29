@@ -1,0 +1,12 @@
+<%= render 'shared/navbar' %>
+<h1 class="title-container">Manage Genres</h1>
+<hr>
+<div class="genre-container">
+  <% @genres.each do |genre| %>
+    <div class="genre-edit-entry">
+      <%= link_to genre.genre, genre %>
+      <%= link_to "Edit", '/genres/#{genre.id}/edit' %>
+      <%= link_to "Delete", '/genres/#{genre.id}' %>
+    </div>
+  <% end %>
+</div>
