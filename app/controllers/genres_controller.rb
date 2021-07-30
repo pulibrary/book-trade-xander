@@ -2,15 +2,14 @@
 class GenresController < ApplicationController
   before_action :require_user
   before_action :require_admin_authorization, only: %i[manage new edit create update destroy]
+  before_action :load_genre, only: %i[show edit update destroy]
 
   # GET /genres/1 or /genres/1.json
   def index
     @genres = Genre.all
   end
 
-  def show
-    @genre = Genre.find(params[:id])
-  end
+  def show; end
 
   def manage
     @genres = Genre.all
@@ -22,9 +21,7 @@ class GenresController < ApplicationController
   end
 
   # GET /genres/1/edit
-  def edit
-    @genre = Genre.find(params[:id])
-  end
+  def edit; end
 
   # POST /genres or /genres.json
   def create
@@ -43,7 +40,6 @@ class GenresController < ApplicationController
 
   # PATCH/PUT /genres/1 or /genres/1.json
   def update
-    @genre = Genre.find(params[:id])
     respond_to do |format|
       if @genre.update(genre_params)
         format.html { redirect_to "/genres/admin", notice: "genre was successfully updated." }
@@ -57,7 +53,6 @@ class GenresController < ApplicationController
 
   # DELETE /genres/1 or /genres/1.json
   def destroy
-    @genre = Genre.find(params[:id])
     @genre.destroy
     respond_to do |format|
       format.html { redirect_to "/genres/admin", notice: "genre and all associated books were successfully destroyed." }
@@ -65,10 +60,14 @@ class GenresController < ApplicationController
     end
   end
 
-    private
+  private
 
   # Only allow a list of trusted parameters through.
   def genre_params
     params.require(:genre).permit(:genre)
+  end
+
+  def load_genre
+    @genre = Genre.find(params[:id])
   end
 end

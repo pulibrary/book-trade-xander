@@ -10,10 +10,6 @@ class ApplicationController < ActionController::Base
     redirect_to root_path unless current_user
   end
 
-  def require_ownership(book)
-    redirect_to root_path unless current_user eq(book.user)
-  end
-
   protected
 
   def configure_permitted_parameters

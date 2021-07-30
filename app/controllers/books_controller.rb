@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 class BooksController < ApplicationController
   before_action :require_user
+  before_action :load_book, only: %i[show edit update destroy]
+  before_action :require_ownership, only: %i[edit update destroy]
 
   # GET /books or /books.json
   def index
@@ -9,9 +11,7 @@ class BooksController < ApplicationController
   end
 
   # GET /books/1 or /books/1.json
-  def show
-    @book = Book.find(params[:id])
-  end
+  def show; end
 
   # GET /books/new
   def new
@@ -19,10 +19,7 @@ class BooksController < ApplicationController
   end
 
   # GET /books/1/edit
-  def edit
-    @book = Book.find(params[:id])
-    require_ownership(@book)
-  end
+  def edit; end
 
   # POST /books or /books.json
   def create
@@ -41,8 +38,6 @@ class BooksController < ApplicationController
 
   # PATCH/PUT /books/1 or /books/1.json
   def update
-    @book = Book.find(params[:id])
-    require_ownership(@book)
     respond_to do |format|
       if @book.update(book_params)
         format.html { redirect_to "/users", notice: "Book was successfully updated." }
@@ -56,8 +51,6 @@ class BooksController < ApplicationController
 
   # DELETE /books/1 or /books/1.json
   def destroy
-    @book = Book.find(params[:id])
-    require_ownership(@book)
     @book.destroy
     respond_to do |format|
       format.html { redirect_to "/books", notice: "Book was successfully destroyed." }
@@ -65,10 +58,18 @@ class BooksController < ApplicationController
     end
   end
 
-    private
+  private
 
   # Only allow a list of trusted parameters through.
   def book_params
     params.require(:book).permit(:title, :author, :description, :genre_id).merge(user: current_user)
+  end
+
+  def require_ownership
+    redirect_to root_path unless current_user.id == @book.user.id
+  end
+
+  def load_book
+    @book = Book.find(params[:id])
   end
 end
