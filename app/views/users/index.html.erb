@@ -1,0 +1,29 @@
+<%= render 'shared/navbar' %>
+<h1 class="title-container">Manage Users</h1>
+<hr>
+<b>Add New Admin</b>
+  <%= link_to 'Add', new_user_registration_path %>
+<hr>
+<div class="row">
+  <div class="col">
+    <table class="table">
+      <thead>
+        <tr>
+          <th colspan="3">Manage Existing Users  <i>  *Removing a user will delete all their books*</i></th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td><%= link_to 'Remove', "/users/#{user.id}}", method: :delete, data: { confirm: 'Removing a user removes all associated books. Are you sure you would like continue?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
