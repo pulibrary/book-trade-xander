@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 class GenresController < ApplicationController
+  before_action :require_user
+  before_action :require_admin_authorization, only: %i[manage new edit create update destroy]
+
   # GET /genres/1 or /genres/1.json
   def index
     @genres = Genre.all

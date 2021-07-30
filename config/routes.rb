@@ -9,7 +9,10 @@ Rails.application.routes.draw do
 
   # admin routes
   get '/genres/admin', to: 'genres#manage'
+
   get '/users/admin', to: 'users#index'
+  patch '/users/:id/update', to: 'users#update'
+  patch '/users/:id', to: 'users#edit'
   delete '/users/:id', to: 'users#destroy'
 
   resources :genres

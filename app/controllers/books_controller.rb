@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 class BooksController < ApplicationController
+  before_action :require_user
+
   # GET /books or /books.json
   def index
     @books = Book.all
@@ -19,6 +21,7 @@ class BooksController < ApplicationController
   # GET /books/1/edit
   def edit
     @book = Book.find(params[:id])
+    require_ownership(@book)
   end
 
   # POST /books or /books.json
@@ -39,6 +42,7 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/1 or /books/1.json
   def update
     @book = Book.find(params[:id])
+    require_ownership(@book)
     respond_to do |format|
       if @book.update(book_params)
         format.html { redirect_to "/users", notice: "Book was successfully updated." }
@@ -53,6 +57,7 @@ class BooksController < ApplicationController
   # DELETE /books/1 or /books/1.json
   def destroy
     @book = Book.find(params[:id])
+    require_ownership(@book)
     @book.destroy
     respond_to do |format|
       format.html { redirect_to "/books", notice: "Book was successfully destroyed." }
