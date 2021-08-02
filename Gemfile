@@ -33,6 +33,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'bixby'
 gem 'bootstrap', '~> 5.0.1'
 gem 'devise'
+gem 'factory_bot_rails'
 gem 'jquery-rails'
 gem 'rspec-rails'
 
