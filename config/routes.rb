@@ -7,9 +7,13 @@ Rails.application.routes.draw do
 
   resources :books
 
-  get '/genres', to: 'genres#index'
-  get '/genres/:id', to: 'genres#show', as: 'genre'
-
-  # admin routes for genres
+  # admin routes
   get '/genres/admin', to: 'genres#manage'
+
+  get '/users/admin', to: 'users#index'
+  patch '/users/:id/update', to: 'users#update'
+  patch '/users/:id', to: 'users#edit'
+  delete '/users/:id', to: 'users#destroy'
+
+  resources :genres
 end

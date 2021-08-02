@@ -3,8 +3,6 @@ require "rails_helper"
 
 RSpec.describe "User" do
   context "when entering the site" do
-    it "prevents website usage without an account"
-    
     it "asks to register/sign in" do
       visit "/"
       expect(page).to have_link "Sign In"
@@ -54,7 +52,9 @@ RSpec.describe "User" do
       click_on "Sign up"
       expect(page).to have_content("Password confirmation doesn't match Password")
     end
-    it "can edit user data" do 
+  end
+  context "when using the site as a user" do
+    it "can edit personal user data" do 
       user_test = User.create(email: "test@gmail.com", name: "Test Name", password: "password", password_confirmation: "password")
       sign_in user_test
       visit "/users/edit"
@@ -62,6 +62,15 @@ RSpec.describe "User" do
       fill_in 'Current password', with: "password"
       click_on "Update"
       expect(User.find(user_test.id).name).to eq("new name")
+    end
+  end
+  context "when using the site as an admin" do
+    it "can view all users" do
+      test_user = User.create(email: "testUser@gmail.com", name: "Find Name", password: "password", password_confirmation: "password")
+      user_admin = User.create(email: "test@gmail.com", name: "Test Name", password: "password", password_confirmation: "password", admin: true)
+      sign_in user_admin
+      visit "/users/admin"
+      expect(page).to have_content("Find Name")
     end
   end
 end

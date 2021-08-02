@@ -33,6 +33,13 @@ hen.password = 'password'
 hen.password_confirmation = 'password'
 hen.name = 'Mr. Hen'
 hen.save!
+xander = User.new
+xander.email = 'xander@gmail.com'
+xander.password = '123456'
+xander.password_confirmation = '123456'
+xander.name = "Xander Gardner"
+xander.admin = true
+xander.save!
 
 Book.create(title: "The Silent Patient", author: "Alex Michael", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu malesuada ex, ut dapibus quam. Nullam molestie dui elit, nec volutpat nunc aliquet cursus. Mauris porttitor aliquam ullamcorper", user: kim, genre: mystery)
 Book.create(title: "The Murder Club", author: "Richard Osmosis", description: "Vestibulum pretium accumsan ipsum, nec fringilla erat ultricies ut. Nullam at ipsum id arcu feugiat tincidunt. Nullam nec mi a ligula maximus condimentum. Sed porta nisl neque, non eleifend lorem sollicitudin sit amet. Sed eu velit malesuada, fermentum urna ut, pharetra nisi. Quisque vulputate pellentesque faucibus.", user: hen, genre: mystery)

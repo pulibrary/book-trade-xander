@@ -1,6 +1,6 @@
 <%= render 'shared/navbar' %>
-<h1 id="logo" class="center-container"><%= @genre.genre %> Books</h1>
-<br>
+<h1 class="title-container"><%= @genre.genre %> Books</h1>
+<hr>
 <div class="grid">
   <% Book.all.each do |book| %>
     <% if book.genre_id == @genre.id %>
