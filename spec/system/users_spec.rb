@@ -13,10 +13,10 @@ RSpec.describe "User" do
       expect(page).to have_content("Password confirmation")
     end
     it "approves sign in for valid users" do
-      user_test = User.create(email: "test@gmail.com", name: "Test Name", password: "password", password_confirmation: "password")
+      user = create(:user)
       visit "/users/sign_in"
-      fill_in 'Email', with: 'test@gmail.com'
-      fill_in 'Password', with: 'password'
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
       click_on 'Log in'
       expect(page).to have_content("Books for Trade")
     end
@@ -28,8 +28,8 @@ RSpec.describe "User" do
       expect(page).to have_content("Invalid Email or password")
     end
     it "can logout users" do
-      user_test = User.create(email: "test@gmail.com", name: "Test Name", password: "password", password_confirmation: "password")
-      sign_in user_test
+      user = create(:user)
+      sign_in user
       visit "/users"
       click_on "Logout"
       expect(page).to have_content("Signed out successfully.")
@@ -55,22 +55,22 @@ RSpec.describe "User" do
   end
   context "when using the site as a user" do
     it "can edit personal user data" do 
-      user_test = User.create(email: "test@gmail.com", name: "Test Name", password: "password", password_confirmation: "password")
-      sign_in user_test
+      user = create(:user)
+      sign_in user
       visit "/users/edit"
       fill_in 'Name', with: 'new name'
       fill_in 'Current password', with: "password"
       click_on "Update"
-      expect(User.find(user_test.id).name).to eq("new name")
+      expect(User.find(user.id).name).to eq("new name")
     end
   end
   context "when using the site as an admin" do
     it "can view all users" do
-      test_user = User.create(email: "testUser@gmail.com", name: "Find Name", password: "password", password_confirmation: "password")
-      user_admin = User.create(email: "test@gmail.com", name: "Test Name", password: "password", password_confirmation: "password", admin: true)
-      sign_in user_admin
+      user = create(:user)
+      admin_user = create(:admin_user)
+      sign_in admin_user
       visit "/users/admin"
-      expect(page).to have_content("Find Name")
+      expect(page).to have_content(user.name)
     end
   end
 end

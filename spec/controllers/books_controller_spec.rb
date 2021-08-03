@@ -5,9 +5,9 @@ RSpec.describe BooksController, type: :controller do
   describe "#create" do
     context "when there is an error saving a book" do
       it "returns 422 status error" do
-        user = User.create(email: "test@gmail.com", name: "Test Name", password: "password", password_confirmation: "password")
+        user = create(:user)
         sign_in user
-        # errors due to no user or genre association
+        # errors due to no genre association
         post :create, params: { book: { title: "test", author: "test author", description: "test description" } }
         expect(response).to have_http_status(422)
       end
@@ -15,8 +15,8 @@ RSpec.describe BooksController, type: :controller do
   end
   describe "#update" do
     it "updates a book" do
-      user = User.create(email: "test@gmail.com", name: "Test Name", password: "password", password_confirmation: "password")
-      genre = Genre.create(genre: "fiction")
+      user = create(:user)
+      genre = create(:genre)
       book = Book.create(title: "test", author: "test author", description: "test description", genre: genre, user: user)
 
       sign_in user
