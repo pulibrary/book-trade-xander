@@ -8,6 +8,7 @@
       <h3>By: <%= book.author %></h3>
       <p>Genre: <%= book.genre.genre %></p>
       <p><%= book.description %></p>
+      <p>Posted <%= posted_time_ago(book) %> ago</p>
       <div class="contact"><%= link_to 'Contact Trader', book %></div>
     </div>
   <% end %>
