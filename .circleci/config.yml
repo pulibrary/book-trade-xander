@@ -9,8 +9,15 @@ executors:
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
+          PGHOST: 127.0.0.1
+          PGUSER: booktrade
+          RAILS_ENV: test
+      - image: postgres:10.6-alpine
+        environment:
+          POSTGRES_USER: booktrade
+          POSTGRES_DB: booktrade_test
+          POSTGRES_HOST_AUTH_METHOD: trust
     working_directory: ~/book-trade
-
 commands:
   setup-bundler:
     description: "Install correct version of bundler and load from cache or bundle install"
@@ -79,11 +86,13 @@ jobs:
           at: '~/book-trade'
       - setup-bundler
 
+      # Wait for DB
+      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
+
       # Run rspec
       - run:
           name: Run rspec
           command: bundle exec rspec spec/
-
 
       # Save test results for timing analysis
       - store_test_results:
