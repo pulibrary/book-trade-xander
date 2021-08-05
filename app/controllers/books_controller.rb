@@ -24,6 +24,7 @@ class BooksController < ApplicationController
   # POST /books or /books.json
   def create
     @book = Book.new(book_params)
+    DeleteWarning.perform_in(5.days, @book.id)
 
     respond_to do |format|
       if @book.save

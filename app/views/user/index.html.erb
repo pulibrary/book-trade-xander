@@ -8,6 +8,9 @@
       <h3>By: <%= book.author %></h3>
       <p>Genre: <%= book.genre.genre %></p>
       <p><%= book.description %></p>
+      <% if book.old %>
+        <i style="color:red">Book has been on the shelf too long, it will be deleted soon</i>
+      <% end %>
       <div class="horz">
       <%= link_to "Edit", "books/#{book.id}/edit" %>
       <%= link_to "Delete", "books/#{book.id}", method: :delete %>

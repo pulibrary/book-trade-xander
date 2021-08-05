@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-namespace :server do
+namespace :servers do
   desc "Start postgres server using lando."
   task start: :environment do
     system('lando start')
