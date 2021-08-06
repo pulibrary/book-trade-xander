@@ -2,6 +2,9 @@
 Rails.application.routes.draw do
   root to: 'home#index'
 
+  require 'sidekiq/web'
+  mount Sidekiq::Web => "/sidekiq"
+
   devise_for :users
   get '/users', to: 'user#index'
 

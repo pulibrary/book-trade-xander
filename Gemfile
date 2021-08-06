@@ -37,6 +37,7 @@ gem 'devise'
 gem 'factory_bot_rails'
 gem 'jquery-rails'
 gem 'rspec-rails'
+gem 'sidekiq'
 gem 'whenever', require: false
 
 group :development, :test do
