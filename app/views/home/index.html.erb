@@ -1,7 +1,13 @@
-<h1 class='logo' id='home-logo'>Book Trade</h1>
+<div class="column-container">
+  <h1 class='logo' id='home-logo'>Book Trade</h1>
 </div>
-<hr>
-<i>Trade your books with others!<i>
-<hr>
-<%= link_to 'Sign In', new_user_session_path %>
-<%= link_to 'Register', new_user_registration_path %>
+  <hr>
+<div class="column-container">
+  <i>Trade your books with others!</i>
+</div>
+  <hr>
+<div class="column-container">
+  <%= link_to 'Sign In', new_user_session_path %>
+  <br>
+  <%= link_to 'Register', new_user_registration_path %>
+</div>
