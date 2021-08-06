@@ -1,11 +1,13 @@
 <%= render 'shared/navbar' %>
-<div class="grid">
+<br>
+<div class="column-container">
   <div class="entry">
-    <h2><%= @book.title %></h2>
+    <h2><i><%= @book.title %></i></h2>
     <h3>By: <%= @book.author %></h3>
     <p>Genre: <%= @book.genre.genre %></p>
     <p><%= @book.description %></p>
   </div>
+  <br>
   <div class="contact_entry">
     <p>Trader's Name: <%= @book.user.name%></p>
     <p>Trader's Email: <a href="mailto:<%=@book.user.email%>?subject=<%=@book.title%> For Trade"><%=@book.user.email%></a></p>

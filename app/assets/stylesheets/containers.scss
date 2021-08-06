@@ -6,6 +6,12 @@
   padding-top: 15px;
 }
 
+.column-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 // Book details grid and container
 
 .grid {
@@ -77,4 +83,8 @@
 .admin-nav {
   background-color: red;
   border-radius: 50%;
+}
+
+.admin-nav:hover {
+  background-color: white;
 }

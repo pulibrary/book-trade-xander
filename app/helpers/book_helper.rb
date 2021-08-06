@@ -10,7 +10,7 @@ module BookHelper
       "1 hour"
     elsif minutes < 1440
       "#{minutes / 60} hours"
-    elsif minutes == 1440
+    elsif minutes < 2880
       "1 day"
     else
       "#{minutes / 1440} days"
